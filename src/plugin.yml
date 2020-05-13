@@ -1,0 +1,15 @@
+name: HasenJagd_by_Marvin2k0
+author: Marvin2k0
+version: 1.0
+main: de.marvin2k0.hasenjagd.HasenJagd
+commands:
+  setlobby:
+    permission: hasenjagd.setlobby
+  sethunter:
+    permission: hasenjagd.sethunter
+  sethase:
+    permission: hasenjagd.sethase
+  hasenjagd:
+    permission: hasenjagd.info
+  pass:
+    permission: hasenjagd.pass
