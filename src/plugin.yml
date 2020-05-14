@@ -1,6 +1,7 @@
 name: HasenJagd_by_Marvin2k0
 author: Marvin2k0
 version: 1.0
+api-version: 1.14
 main: de.marvin2k0.hasenjagd.HasenJagd
 commands:
   setlobby:
@@ -13,3 +14,7 @@ commands:
     permission: hasenjagd.info
   pass:
     permission: hasenjagd.pass
+  leave:
+    permission: hasenjagd.leave
+  stats:
+    permission: hasenjagd.stats

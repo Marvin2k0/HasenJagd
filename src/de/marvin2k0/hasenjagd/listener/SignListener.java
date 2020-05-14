@@ -19,9 +19,11 @@ public class SignListener implements Listener
         Block block = event.getClickedBlock();
 
         if (block == null)
+        {
             return;
+        }
 
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && block.getType().toString().contains("SIGN"))
+        if (block.getType().toString().contains("SIGN"))
         {
             Sign sign = (Sign) block.getState();
             String line1 = sign.getLine(0);
