@@ -61,7 +61,7 @@ public class GameListener implements Listener
 
             GamePlayer gp = HasenJagd.gameplayers.get(player);
 
-            if (gp.inLobby)
+            if (gp.inLobby || gp.getGame().win)
                 event.setCancelled(true);
         }
     }

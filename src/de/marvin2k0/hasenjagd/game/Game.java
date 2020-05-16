@@ -34,6 +34,7 @@ public class Game
     private String name;
     private boolean hasStarted;
     private boolean inGame;
+    public boolean win;
     public GamePlayer hunter;
     private CountdownTimer timer;
     private String last;
@@ -44,6 +45,7 @@ public class Game
         this.name = name;
         this.hasStarted = false;
         this.inGame = false;
+        this.win = false;
     }
 
     public void join(Player player)
@@ -157,6 +159,7 @@ public class Game
         gameplayers.clear();
         players.clear();
         hunter = null;
+        win = false;
         hasen.clear();
         scoreboards.clear();
         hasStarted = false;
@@ -280,11 +283,29 @@ public class Game
         timer = new CountdownTimer(HasenJagd.plugin, 15 * 60,
                 () -> {
                 },
-                () -> {
-                } /*win()*/,
+                () -> win(),
                 (t) -> updateIngameScoreboard(t.getSecondsLeft()));
 
         timer.scheduleTimer();
+    }
+
+    private void win()
+    {
+        win = true;
+
+        for (GamePlayer gp : hasen)
+        {
+            gp.addHase();
+        }
+
+        for (GamePlayer gp : gameplayers)
+        {
+            gp.getPlayer().setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+            gp.getPlayer().sendTitle(Text.get("hasewintitle", false), "", 20, 100, 20);
+        }
+
+        sendMessage(Text.get("restart"));
+        Bukkit.getScheduler().scheduleSyncDelayedTask(HasenJagd.plugin, () -> reset(), 200);
     }
 
     Scoreboard ingameScoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
